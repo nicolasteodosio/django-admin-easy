@@ -402,6 +402,8 @@ class TestEasyView(test.TestCase):
         views = self.admin.get_urls()
         if django.VERSION < (1, 9):
             self.assertEqual(len(views), 7)
+        elif django.VERSION >= (2,0):
+            self.assertEqual(len(views), 9)
         else:
             self.assertEqual(len(views), 8)
 

@@ -4,9 +4,11 @@ from __future__ import (
 )
 from django.conf.urls import url
 from django.contrib import messages
-from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
-
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
 from easy.helper import get_model_name
 
 

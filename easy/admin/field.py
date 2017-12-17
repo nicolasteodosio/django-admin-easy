@@ -4,12 +4,14 @@ from __future__ import (
 )
 from django.utils.six.moves.urllib.parse import urlencode
 from django.contrib.admin.templatetags.admin_urls import admin_urlname
-from django.core.urlresolvers import reverse
 from django.db.models import Model, ImageField as ModelImageField
 from django.conf import settings
 from django.utils.html import conditional_escape
 from django.template.loader import render_to_string
-
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
 try:
     from django.forms.utils import flatatt
 except ImportError:
@@ -206,7 +208,7 @@ class FilterAdminField(SimpleAdminField):
 
 class CacheAdminField(SimpleAdminField):
 
-    def __init__(self, attr, django_filter, load=None, extra=None, short_description=None, 
+    def __init__(self, attr, django_filter, load=None, extra=None, short_description=None,
                  admin_order_field=None, allow_tags=False, default=None):
         self.filter = django_filter
         self.load = load
